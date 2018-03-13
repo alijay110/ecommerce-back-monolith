@@ -14,11 +14,8 @@ public class Card {
     private BigDecimal maxDiscount;
     private String imgUrl;
 
-    public Card() {
-    }
-
     public static Card buildRandomCard(){
-        return new Card(UUID.randomUUID().toString(),BigDecimal.ONE, UUID.randomUUID().toString());
+        return new Card(UUID.randomUUID().toString(),BigDecimal.ONE, "../../assets/img/sephora-gift-card.png");
     }
 
 }
