@@ -15,7 +15,7 @@ public class Card {
     private String imgUrl;
 
     public static Card buildRandomCard(){
-        return new Card(UUID.randomUUID().toString(),BigDecimal.ONE, "../../assets/img/sephora-gift-card.png");
+        return new Card(UUID.randomUUID().toString(),BigDecimal.TEN, "../../assets/img/sephora-gift-card.png");
     }
 
 }
