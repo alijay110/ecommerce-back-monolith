@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import pl.cba.gibcode.alabackend.brand.model.Brand;
 import pl.cba.gibcode.alabackend.brand.repository.BrandRepository;
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
+@Transactional
 public class AlaBackendApplicationTests {
 
     @Autowired
@@ -79,7 +81,7 @@ public class AlaBackendApplicationTests {
         brand.setActive(Boolean.TRUE);
         brand.setMaxDiscount(BigDecimal.TEN);
         brand.setName(name);
-        brand.setCardTypes(Stream.of(savedCardType).collect(Collectors.toSet()));
+        brand.addCardType(savedCardType);
         brand.setImgUrl("test");
         return brandRepository.save(brand);
     }
