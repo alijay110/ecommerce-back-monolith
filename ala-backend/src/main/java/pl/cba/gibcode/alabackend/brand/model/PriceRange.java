@@ -1,14 +1,16 @@
 package pl.cba.gibcode.alabackend.brand.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString(exclude = "brands")
+@EqualsAndHashCode(exclude = "brands")
 @NoArgsConstructor
 public class PriceRange {
     @Id
