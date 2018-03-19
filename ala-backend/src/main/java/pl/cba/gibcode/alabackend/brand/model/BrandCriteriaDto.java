@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 public class BrandCriteriaDto {
     private String brandLetter;
-    private Long priceRangeId;
-    private Long categoryId;
-    private Long cardTypeId;
+    private Integer priceRangeId;
+    private Integer categoryId;
+    private Integer cardTypeId;
 }

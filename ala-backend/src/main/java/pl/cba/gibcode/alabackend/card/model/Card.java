@@ -18,9 +18,8 @@ public class Card {
     @Column(nullable = false)
     private BigDecimal discount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_type_id")
-    private CardType cardType;
+    @Enumerated(EnumType.STRING)
+    private CardTypeEnum cardType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")

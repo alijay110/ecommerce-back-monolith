@@ -14,13 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import pl.cba.gibcode.alabackend.brand.model.Brand;
 import pl.cba.gibcode.alabackend.brand.repository.BrandRepository;
-import pl.cba.gibcode.alabackend.card.model.Card;
-import pl.cba.gibcode.alabackend.card.model.CardType;
-import pl.cba.gibcode.alabackend.card.repository.CardTypeRepository;
+import pl.cba.gibcode.alabackend.card.model.CardTypeEnum;
 
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -32,9 +28,6 @@ public class AlaBackendApplicationTests {
 
     @Autowired
     private BrandRepository brandRepository;
-
-    @Autowired
-    private CardTypeRepository cardTypeRepository;
 
     @Autowired
     private WebApplicationContext context;
@@ -51,37 +44,30 @@ public class AlaBackendApplicationTests {
                 .webAppContextSetup(context)
                 .build();
         brandRepository.deleteAll();
-        cardTypeRepository.deleteAll();
-
     }
 
     @Test
     public void shouldReturnFilteredListOfBrands() throws Exception {
         //given
-        CardType cardType = createCardType("ctype1");
-        createBrand("atestX", cardType);
-        createBrand("btestX", cardType);
+        //CardType cardType = createCardType("ctype1");
+        createBrand("atestX", CardTypeEnum.ELECTRONIC);
+        createBrand("btestX", CardTypeEnum.ELECTRONIC);
         //expect
         log.info("logging: {}", mockMvc.perform(get("/api/brands?page=0&size=16&sort=name")
                 .content("{\"brandLetter\":\"b\", " +
-                        "\"cardTypeId\" :  " + cardType.getId() + "}")
+                        "\"cardTypeId\" :  " + CardTypeEnum.ELECTRONIC.ordinal() + "}")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse().getContentAsString());
     }
 
-    public CardType createCardType(String name) {
-        CardType cardType = new CardType();
-        cardType.setName(name);
-        return cardTypeRepository.saveAndFlush(cardType);
-    }
 
-    private Brand createBrand(String name, CardType savedCardType) {
+    private Brand createBrand(String name, CardTypeEnum cardTypeEnum) {
         Brand brand = new Brand();
         brand.setActive(Boolean.TRUE);
         brand.setMaxDiscount(BigDecimal.TEN);
         brand.setName(name);
-        brand.addCardType(savedCardType);
+        brand.addCardType(cardTypeEnum);
         brand.setImgUrl("test");
         return brandRepository.save(brand);
     }

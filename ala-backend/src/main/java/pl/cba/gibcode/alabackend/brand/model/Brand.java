@@ -3,11 +3,10 @@ package pl.cba.gibcode.alabackend.brand.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.cba.gibcode.alabackend.card.model.Card;
-import pl.cba.gibcode.alabackend.card.model.CardType;
+import pl.cba.gibcode.alabackend.card.model.CardTypeEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ public class Brand {
     @Column(unique = true, nullable = false)
     private String name;
     @Column(nullable = false)
-    private String imgUrl = "../../assets/img/no-image-gift-card.png";
+    private String imgUrl = "../../assets/img/no-image-gift-card.jpg";
     @Column(nullable = false)
     private BigDecimal maxDiscount = BigDecimal.ZERO;
     @Column(nullable = false)
@@ -36,58 +35,48 @@ public class Brand {
     )
     private Set<Card> cards = new HashSet<>();
 
-    @ManyToMany(mappedBy = "brands", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<CardType> cardTypes = new HashSet<>();
+    @ElementCollection(targetClass = CardTypeEnum.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "brand_cardtype")
+    @Column(name = "card_type")
+    private Set<CardTypeEnum> cardTypes = new HashSet<>();
 
-    @ManyToMany(mappedBy = "brands", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Category> categories = new HashSet<>();
+    @ElementCollection(targetClass = CategoryEnum.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "brand_category")
+    @Column(name = "category")
+    private Set<CategoryEnum> categories = new HashSet<>();
 
-    @ManyToMany(mappedBy = "brands", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<PriceRange> priceRanges = new HashSet<>();
 
-    public void addCardType(CardType cardType){
+    @ElementCollection(targetClass = PriceRangeEnum.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "brand_pricerange")
+    @Column(name = "price_range")
+    private Set<PriceRangeEnum> priceRanges = new HashSet<>();
+
+    public void addCardType(CardTypeEnum cardType) {
         cardTypes.add(cardType);
-        cardType.getBrands().add(this);
     }
 
-    public void removeCardType(CardType cardType){
+    public void removeCardType(CardTypeEnum cardType) {
         cardTypes.remove(cardType);
-        cardType.getBrands().remove(this);
     }
 
-    public void addCategory(Category category){
+    public void addCategory(CategoryEnum category) {
         categories.add(category);
-        category.getBrands().add(this);
     }
 
-    public void removeCategory(Category category){
+    public void removeCategory(CategoryEnum category) {
         categories.remove(category);
-        category.getBrands().remove(this);
     }
 
-    public void addPriceRange(PriceRange priceRange){
+    public void addPriceRange(PriceRangeEnum priceRange) {
         priceRanges.add(priceRange);
-        priceRange.getBrands().add(this);
     }
 
-    public void removePriceRange(PriceRange priceRange){
+    public void removePriceRange(PriceRangeEnum priceRange) {
         priceRanges.remove(priceRange);
-        priceRange.getBrands().remove(this);
     }
-
-
-    public void remove() {
-        for(CardType cardType: new ArrayList<>(cardTypes)){
-            removeCardType(cardType);
-        }
-        for(Category category: new ArrayList<>(categories)){
-            removeCategory(category);
-        }
-        for(PriceRange priceRange: new ArrayList<>(priceRanges)){
-            removePriceRange(priceRange);
-        }
-    }
-
 
 }
 
