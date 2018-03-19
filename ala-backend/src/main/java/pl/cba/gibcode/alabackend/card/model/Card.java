@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Card {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal price;
     @Column(nullable = false)
