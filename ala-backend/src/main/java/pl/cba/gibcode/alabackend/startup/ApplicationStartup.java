@@ -30,8 +30,9 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     @Override
     @Transactional
     public void onApplicationEvent(final ApplicationReadyEvent event) {
+        brandRepository.deleteAll();
         log.info("Loading test data");
-        Stream.generate(() -> createBrand(UUID.randomUUID().toString(), CardTypeEnum.PHYSICAL, "../../assets/img/no-image-gift-card.jpg"))
+        Stream.generate(() -> createBrand(UUID.randomUUID().toString(), CardTypeEnum.PHYSICAL, "../../assets/img/no-image-gift-card.png"))
                 .limit(30).collect(Collectors.toList());
         Stream.generate(() -> createBrand(UUID.randomUUID().toString(), CardTypeEnum.ELECTRONIC, "../../assets/img/sephora-gift-card.png"))
                 .limit(300).collect(Collectors.toList());
