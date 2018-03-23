@@ -11,7 +11,8 @@ public enum CategoryEnum {
     GROCERIES,
     SERVICES,
     GAMES,
-    HEALTH;
+    HEALTH,
+    RESTAURANTS;
 
     private static CategoryEnum[] allValues = values();
 
