@@ -36,6 +36,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         log.info("Loading test data");
         brandRepository.deleteAll();
+        brandRepository.flush();
         createBrand("Adidas", IMG_BASE_URL + "adidas-gc-taxon.1.png",
                 Arrays.asList(CardTypeEnum.ELECTRONIC, CardTypeEnum.PHYSICAL),
                 Collections.singletonList(CategoryEnum.FASHION),
