@@ -24,5 +24,6 @@ public class SwaggerResourcesConfig {
 				.apis(RequestHandlerSelectors.basePackage("pl.cba.gibcode.alabackend"))
 				.paths(PathSelectors.ant("/api/**"))
 				.build();
+
 	}
 }
