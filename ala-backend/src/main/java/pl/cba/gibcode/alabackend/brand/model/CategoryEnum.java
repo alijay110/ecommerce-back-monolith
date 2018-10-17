@@ -1,7 +1,6 @@
 package pl.cba.gibcode.alabackend.brand.model;
 
 public enum CategoryEnum {
-    ALL,
     ACCESSORIES,
     HOUSEHOLD,
     ENTERTAINMENT,

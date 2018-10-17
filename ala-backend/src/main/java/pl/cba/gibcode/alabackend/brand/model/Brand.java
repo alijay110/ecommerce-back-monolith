@@ -1,9 +1,11 @@
 package pl.cba.gibcode.alabackend.brand.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import pl.cba.gibcode.alabackend.card.model.Card;
 import pl.cba.gibcode.alabackend.card.model.CardTypeEnum;
+import pl.cba.gibcode.alabackend.shared.model.PriceRangeEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"cards"} )
 @NoArgsConstructor
 public class Brand {
 
@@ -53,6 +56,10 @@ public class Brand {
     @CollectionTable(name = "brand_pricerange")
     @Column(name = "price_range")
     private Set<PriceRangeEnum> priceRanges = new HashSet<>();
+
+    @Column(nullable = false)
+    private Boolean deleted = Boolean.FALSE;
+
 
     public void addCardType(CardTypeEnum cardType) {
         cardTypes.add(cardType);

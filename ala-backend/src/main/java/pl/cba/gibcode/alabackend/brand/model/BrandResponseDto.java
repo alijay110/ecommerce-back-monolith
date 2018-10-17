@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 @Value(staticConstructor = "of")
 public class BrandResponseDto {
-    private Long id;
     private String name;
     private String imgUrl;
     private BigDecimal maxDiscount;

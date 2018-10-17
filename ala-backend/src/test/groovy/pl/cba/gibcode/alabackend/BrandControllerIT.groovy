@@ -1,3 +1,4 @@
+/*
 package pl.cba.gibcode.alabackend
 
 import net.minidev.json.JSONArray
@@ -16,8 +17,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import static pl.cba.gibcode.alabackend.brand.model.CategoryEnum.CULTURE
 import static pl.cba.gibcode.alabackend.brand.model.CategoryEnum.RESTAURANTS
-import static pl.cba.gibcode.alabackend.brand.model.PriceRangeEnum.FIFTY_HUNDRED
-import static pl.cba.gibcode.alabackend.brand.model.PriceRangeEnum.ZERO_FIFTY
+import static pl.cba.gibcode.alabackend.shared.model.PriceRangeEnum.FIFTY_HUNDRED
+import static pl.cba.gibcode.alabackend.shared.model.PriceRangeEnum.ZERO_FIFTY
 import static pl.cba.gibcode.alabackend.card.model.CardTypeEnum.ELECTRONIC
 import static pl.cba.gibcode.alabackend.card.model.CardTypeEnum.PHYSICAL
 
@@ -71,4 +72,4 @@ class BrandControllerIT extends Specification {
     }
 
 
-}
+}*/

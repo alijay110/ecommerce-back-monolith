@@ -1,7 +1,6 @@
 package pl.cba.gibcode.alabackend.card.model;
 
 public enum CardTypeEnum {
-    ALL,
     PHYSICAL,
     ELECTRONIC;
 

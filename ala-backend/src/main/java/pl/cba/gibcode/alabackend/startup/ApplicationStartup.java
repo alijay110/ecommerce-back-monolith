@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.cba.gibcode.alabackend.brand.model.Brand;
 import pl.cba.gibcode.alabackend.brand.model.CategoryEnum;
-import pl.cba.gibcode.alabackend.brand.model.PriceRangeEnum;
 import pl.cba.gibcode.alabackend.brand.repository.BrandRepository;
 import pl.cba.gibcode.alabackend.card.model.CardTypeEnum;
+import pl.cba.gibcode.alabackend.shared.model.PriceRangeEnum;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

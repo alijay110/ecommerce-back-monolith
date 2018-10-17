@@ -2,11 +2,10 @@ package pl.cba.gibcode.alabackend;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import pl.cba.gibcode.alabackend.brand.model.Brand;
 import pl.cba.gibcode.alabackend.brand.model.CategoryEnum;
-import pl.cba.gibcode.alabackend.brand.model.PriceRangeEnum;
+import pl.cba.gibcode.alabackend.shared.model.PriceRangeEnum;
 import pl.cba.gibcode.alabackend.brand.repository.BrandRepository;
 import pl.cba.gibcode.alabackend.card.model.CardTypeEnum;
 
